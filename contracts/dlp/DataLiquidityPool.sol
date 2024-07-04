@@ -1277,6 +1277,7 @@ contract DataLiquidityPool is
             }
         }
     }
+
     function _deregisterValidator(address validatorAddress) internal {
         createEpochs();
 

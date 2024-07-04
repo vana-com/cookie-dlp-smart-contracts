@@ -2,9 +2,9 @@ import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
 import { ethers, upgrades } from "hardhat";
 import { BigNumberish, parseEther } from "ethers";
-import { DLPT, DataLiquidityPool } from "../typechain-types";
+import { DOH, DataLiquidityPool } from "../typechain-types";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
-import { advanceBlockNTimes, advanceNSeconds, advanceTimeAndBlock, advanceToBlockN, getCurrentBlockNumber, getCurrentBlockTimestamp } from "../utils/timeAndBlockManipulation";
+import { advanceBlockNTimes, advanceNSeconds, advanceToBlockN, getCurrentBlockNumber, getCurrentBlockTimestamp } from "../utils/timeAndBlockManipulation";
 
 chai.use(chaiAsPromised);
 should();
@@ -46,7 +46,7 @@ describe("DataLiquidityPool", () => {
   let user15: HardhatEthersSigner;
 
   let dlp: DataLiquidityPool;
-  let dlpt: DLPT;
+  let dlpt: DOH;
 
   const dlpName = "Test DLP";
   const dlpTokenName = "Test Data Autonomy Token";
@@ -79,8 +79,8 @@ describe("DataLiquidityPool", () => {
       user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15
     ] = await ethers.getSigners();
 
-    const dlptDeploy = await ethers.deployContract("DLPT", [dlpTokenName, dlpTokenSymbol, owner]);
-    dlpt = await ethers.getContractAt("DLPT", dlptDeploy.target);
+    const dlptDeploy = await ethers.deployContract("DOH", [dlpTokenName, dlpTokenSymbol, owner]);
+    dlpt = await ethers.getContractAt("DOH", dlptDeploy.target);
 
     startBlock = await getCurrentBlockNumber() + 1;
 
@@ -2058,7 +2058,7 @@ describe("DataLiquidityPool", () => {
     });
 
 
-    it.only("should get nextFileToVerify based on last finalized file", async function () {
+    it("should get nextFileToVerify based on last finalized file", async function () {
       await registerValidators();
 
       await dlp.connect(user1).addFile('file1URL', "file1EncryptedAddress");
@@ -2078,6 +2078,7 @@ describe("DataLiquidityPool", () => {
       (await dlp.getNextFileToVerify(v1.address)).fileId.should.eq(4);
       (await dlp.getNextFileToVerify(v2.address)).fileId.should.eq(3);
       (await dlp.getNextFileToVerify(v3.address)).fileId.should.eq(3);
+
     });
   });
 

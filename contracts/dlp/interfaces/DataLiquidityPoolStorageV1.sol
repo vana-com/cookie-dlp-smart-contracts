@@ -6,8 +6,8 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 /**
  * @title Storage for DataLiquidityPool
- * @notice For future upgrades, do not change DataLiquidityPoolStorageV1. Create a new
- * contract which implements DataLiquidityPoolStorageV1
+ * @notice For future upgrades, do not change DOHStorageV1.sol. Create a new
+ * contract which implements DOHStorageV1.sol
  */
 abstract contract DataLiquidityPoolStorageV1 is IDataLiquidityPool {
     using EnumerableSet for EnumerableSet.AddressSet;

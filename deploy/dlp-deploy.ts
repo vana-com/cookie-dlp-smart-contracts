@@ -14,8 +14,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	const tokenName = process.env.DLP_TOKEN_NAME ?? "Custom Data Autonomy Token";
 	const tokenSymbol = process.env.DLP_TOKEN_SYMBOL ?? "CUSTOMDAT";
 
-	const dlptDeploy = await ethers.deployContract("DLPT", [tokenName, tokenSymbol, ownerAddress]);
-	const dlpt = await ethers.getContractAt("DLPT", dlptDeploy.target);
+	const dlptDeploy = await ethers.deployContract("DOH", [tokenName, tokenSymbol, ownerAddress]);
+	const dlpt = await ethers.getContractAt("DOH", dlptDeploy.target);
 
 	console.log("DataLiquidityPoolToken deployed at:", dlptDeploy.target);
 
